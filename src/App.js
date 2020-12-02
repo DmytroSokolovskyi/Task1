@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {usersWithAddress} from "./dataBS/userADR";
+import UserCoponent from "./component/user/UserCoponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <div>
+                {
+                    usersWithAddress.map((user) =>{
+                        let cls = user.id%2 ? 'parne' : 'neparne';
+                        return (
+                            <UserCoponent
+                                item={user}
+                                cls={cls}
+                                key={user.id}
+                            />);
+                    })
+                }
+            </div>
+        );
+    }
 }
 
 export default App;
